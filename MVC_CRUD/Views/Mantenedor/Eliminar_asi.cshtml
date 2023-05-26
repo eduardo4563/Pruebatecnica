@@ -1,0 +1,21 @@
+﻿@model asignaturamodel
+@{
+    ViewData["Title"] = "Eliminar_asi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card w-75">
+    <div class="card-body">
+        <form asp-action="Eliminar_asi" asp-controller="Mantenedor" method="post">
+
+            <input asp-for="id_asig" type="hidden" class="form-control">
+
+    
+                ¿Desea eliminar la Asignacion : @Html.DisplayTextFor(m => m.descripcion) ?
+
+            <br /><br />
+            <button type="submit" class="btn btn-danger">Elimnar</button>
+            <a asp-action="Listar" asp-controller="Mantenedor" class="btn btn-warning">Volver a la lista</a>
+        </form>
+
+    </div>
+</div>

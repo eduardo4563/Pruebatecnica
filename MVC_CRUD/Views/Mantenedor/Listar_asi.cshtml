@@ -1,0 +1,45 @@
+﻿@model List<asignaturamodel>
+@{
+    ViewData["Title"] = "Listar_asi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="card">
+    <div class="card-header">
+        Lista Asignatura
+    </div>
+    <div class="card-body">
+        <a asp-action="Guardar_asi" asp-controller="Mantenedor" class="btn btn-success"><i class="bi bi-plus-circle"></i> Crear Nuevo</a>
+        <hr />
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Codigo de Asignatura</th>
+                    <th>Descripcion</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.id_asig</td>
+                        <td>@item.descripcion</td>
+                        <td>@item.estado</td>
+                       
+                        <td>
+                            <a asp-action="Editar_asi" asp-controller="Mantenedor" class="btn btn-primary btn-sm" asp-route-Idasignatura="@item.id_asig"><i class="bi bi-pencil-square"></i> Editar</a>
+                            <a asp-action="Eliminar_asi" asp-controller="Mantenedor" class="btn btn-danger btn-sm" asp-route-Idasignatura="@item.id_asig"><i class="bi bi-trash3"></i> Eliminar</a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+

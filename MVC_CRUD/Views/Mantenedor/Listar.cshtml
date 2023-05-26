@@ -1,0 +1,72 @@
+﻿@model List<librosmodel>
+
+@{
+    ViewData["Title"] = "Listar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="card">
+    <div class="card-header">
+        Lista libros
+    </div>
+    <div class="card-body">
+
+        <a asp-action="Guardar" asp-controller="Mantenedor" class="btn btn-success"><i class="bi bi-plus-circle"></i> Crear Nuevo</a>
+        <hr />
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="mb-3">
+                    <label class="form-label">Buscar Libro:</label>
+                    
+                    <form asp-action="Listar" asp-controller="Mantenedor" method="post">
+                        
+                        <div class="input-group mb-3">
+
+                            <input type="text" class="form-control" name="busqueda" required>
+                            <button type="submit" class="btn btn-primary input-group-text"><i class="bi bi-search"></i></button>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        @if (Model !=null)
+        {
+
+        
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Codigo de Libro</th>
+                    <th>Descripcion</th>
+                    <th>Asignatura</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tabla">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.id_libro</td>
+                        <td>@item.descripcion</td>
+                        <td>@item.asignatura</td>
+                        <td>@item.stock</td>
+                        <td>
+                            <a asp-action="Editar" asp-controller="Mantenedor" class="btn btn-primary" asp-route-Idlibros="@item.id_libro"><i class="bi bi-pencil-square"></i> Editar</a>
+                                <a asp-action="Eliminar" asp-controller="Mantenedor" class="btn btn-danger " asp-route-Idlibros="@item.id_libro"><i class="bi bi-trash3"></i> Eliminar</a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+            </table>
+        }
+        
+
+    </div>
+</div>
+
